@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { LoanOffer, CompanyData } from '@shared/api';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { getLoansByIds } from '@/lib/loanMatching';
+import { getLoansByIds } from '@shared/loanMatching';
 import { AlertCircle, CheckCircle } from 'lucide-react';
 
 interface ApplicationModalProps {
