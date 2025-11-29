@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import { CalculateCreditScoreRequest, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@/lib/creditScoring';
+import { calculateCreditScore } from '../lib/creditScoring';
 
 // Calculate credit score based on company data
 export const handleCalculateCreditScore: RequestHandler = (req, res) => {
