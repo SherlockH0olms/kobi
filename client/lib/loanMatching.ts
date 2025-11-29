@@ -1,14 +1,14 @@
 // Client-side re-export of shared loan matching functions
-export { 
-  getEligibleLoans, 
-  getLoanById, 
-  getLoansByIds, 
-  sortLoansByInterestRate 
+export {
+  getEligibleLoans,
+  getLoanById,
+  getLoansByIds,
+  sortLoansByInterestRate
 } from '@shared/loanMatching';
 
-// Additional client-specific utility function
 import { LoanOffer, CompanyData } from '@shared/api';
 
+// Additional client-specific utility function
 export function getLoanRecommendationScore(
   loan: LoanOffer,
   companyData: CompanyData,
