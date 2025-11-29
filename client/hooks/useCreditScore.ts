@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { CompanyData, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@/lib/creditScoring';
+import { calculateCreditScore } from '@shared/creditScoring';
 
 interface CacheEntry {
   companyDataId: string;
