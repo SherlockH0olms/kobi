@@ -2,6 +2,10 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { handleASANAuth } from "./routes/asan";
+import { handleCalculateCreditScore } from "./routes/creditScore";
+import { handleGetLoans } from "./routes/loans";
+import { handleSubmitApplication } from "./routes/applications";
 
 export function createServer() {
   const app = express();
@@ -11,13 +15,19 @@ export function createServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // Example API routes
+  // Utility routes
   app.get("/api/ping", (_req, res) => {
-    const ping = process.env.PING_MESSAGE ?? "ping";
+    const ping = process.env.PING_MESSAGE ?? "pong";
     res.json({ message: ping });
   });
 
   app.get("/api/demo", handleDemo);
+
+  // KÖBİ Kredit Platform routes
+  app.post("/api/asan-auth", handleASANAuth);
+  app.post("/api/credit-score", handleCalculateCreditScore);
+  app.get("/api/loans", handleGetLoans);
+  app.post("/api/applications", handleSubmitApplication);
 
   return app;
 }
