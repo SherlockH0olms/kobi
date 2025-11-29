@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { LoanCard } from '@/components/LoanCard';
 import { CompanyData, CreditScoreResult, LoanOffer } from '@shared/api';
-import { getEligibleLoans, sortLoansByInterestRate } from '@/lib/loanMatching';
+import { getEligibleLoans, sortLoansByInterestRate } from '@shared/loanMatching';
 import { ArrowRight, ArrowLeft, Filter } from 'lucide-react';
 
 type SortBy = 'rate' | 'amount' | 'period';
