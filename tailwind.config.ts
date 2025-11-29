@@ -66,6 +66,16 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        subtle: "var(--shadow-subtle)",
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Manrope', 'sans-serif'],
+      },
       keyframes: {
         "accordion-down": {
           from: {
