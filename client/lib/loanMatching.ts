@@ -1,6 +1,9 @@
+// Re-export from shared for client compatibility
+export { getEligibleLoans, getLoanById, getLoansByIds, sortLoansByInterestRate } from '@shared/loanMatching';
+
 import { LoanOffer, CompanyData } from '@shared/api';
 
-// Mock BOKT (lender) data - Azerbaijani banks and credit organizations
+// Additional client-side utility functions
 const MOCK_LOAN_OFFERS: LoanOffer[] = [
   {
     id: 'loan-001',
