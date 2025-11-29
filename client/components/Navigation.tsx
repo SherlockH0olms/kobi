@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useLocation } from 'react-router-dom';
 
 interface NavigationProps {
   companyName?: string;
@@ -8,7 +8,13 @@ interface NavigationProps {
 }
 
 export function Navigation({ companyName, currentStep = 1, onLogout }: NavigationProps) {
-  const location = useLocation();
+  let location: ReturnType<typeof useLocation> | null = null;
+  try {
+    location = useLocation();
+  } catch (e) {
+    // Navigation called outside router context, use default
+    location = null;
+  }
 
   const steps = [
     { number: 1, label: 'Login', path: '/' },
