@@ -1,21 +1,18 @@
 import { cn } from '@/lib/utils';
-import { useLocation } from 'react-router-dom';
 
 interface NavigationProps {
   companyName?: string;
   currentStep?: number;
   onLogout?: () => void;
+  pathname?: string;
 }
 
-export function Navigation({ companyName, currentStep = 1, onLogout }: NavigationProps) {
-  let location: ReturnType<typeof useLocation> | null = null;
-  try {
-    location = useLocation();
-  } catch (e) {
-    // Navigation called outside router context, use default
-    location = null;
-  }
-
+export function Navigation({
+  companyName,
+  currentStep = 1,
+  onLogout,
+  pathname = '/'
+}: NavigationProps) {
   const steps = [
     { number: 1, label: 'Login', path: '/' },
     { number: 2, label: 'Credit Score', path: '/credit-score' },
@@ -31,7 +28,7 @@ export function Navigation({ companyName, currentStep = 1, onLogout }: Navigatio
     return 1;
   };
 
-  const activeStep = getStepFromPath(location.pathname);
+  const activeStep = getStepFromPath(pathname);
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-subtle">
