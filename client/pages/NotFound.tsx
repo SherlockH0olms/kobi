@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -28,9 +28,11 @@ const NotFound = () => {
           <p className="text-muted-foreground mb-8">
             The page you're looking for doesn't exist or has been moved. Let's get you back on track.
           </p>
-          <Button href="/" className="text-base">
-            Return to Home
-          </Button>
+          <Link to="/">
+            <Button className="text-base">
+              Return to Home
+            </Button>
+          </Link>
         </div>
       </div>
     </Layout>
