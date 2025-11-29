@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import { GetLoansResponse } from '@shared/api';
-import { getEligibleLoans } from '@/lib/loanMatching';
+import { getEligibleLoans } from '@shared/loanMatching';
 
 // Get eligible loans based on credit score
 export const handleGetLoans: RequestHandler = (req, res) => {
