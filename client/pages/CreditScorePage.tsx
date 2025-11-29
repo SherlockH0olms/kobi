@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { CreditScoreCard } from '@/components/CreditScoreCard';
 import { CriteriaBreakdown } from '@/components/CriteriaBreakdown';
 import { CompanyData, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@/lib/creditScoring';
+import { calculateCreditScore } from '@shared/creditScoring';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function CreditScorePage() {
