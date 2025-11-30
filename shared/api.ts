@@ -101,3 +101,16 @@ export interface SubmitApplicationResponse {
   status: string;
   message: string;
 }
+
+// Chatbot types
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: number;
+}
+
+export interface ChatResponse {
+  message: string;
+  suggestions?: string[];
+  reasoning?: string;
+}
