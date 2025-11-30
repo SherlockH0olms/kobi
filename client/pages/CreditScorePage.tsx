@@ -230,6 +230,9 @@ export default function CreditScorePage() {
           </div>
         )}
       </div>
+
+      {/* Floating Chatbot Widget */}
+      {creditScore && <ChatbotWidget creditScore={creditScore} />}
     </Layout>
   );
 }
