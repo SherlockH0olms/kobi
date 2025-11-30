@@ -6,6 +6,7 @@ import { handleASANAuth } from "./routes/asan";
 import { handleCalculateCreditScore } from "./routes/creditScore";
 import { handleGetLoans } from "./routes/loans";
 import { handleSubmitApplication } from "./routes/applications";
+import { handleAnalyzeCreditScore } from "./routes/gemini";
 
 export function createServer() {
   const app = express();
@@ -28,6 +29,9 @@ export function createServer() {
   app.post("/api/credit-score", handleCalculateCreditScore);
   app.get("/api/loans", handleGetLoans);
   app.post("/api/applications", handleSubmitApplication);
+
+  // Chatbot routes
+  app.post("/api/chat/analyze-credit-score", handleAnalyzeCreditScore);
 
   return app;
 }
