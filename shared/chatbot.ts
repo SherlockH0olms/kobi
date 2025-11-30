@@ -1,7 +1,7 @@
-import { CreditScoreResult, CreditScoreBreakdown } from './api';
+import { CreditScoreResult, CreditScoreBreakdown } from "./api";
 
 export interface ChatMessage {
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   timestamp: number;
 }
@@ -15,7 +15,9 @@ export interface ChatResponse {
 /**
  * Build context from credit score breakdown for AI analysis
  */
-export function buildCreditScoreContext(creditScore: CreditScoreResult): string {
+export function buildCreditScoreContext(
+  creditScore: CreditScoreResult,
+): string {
   const breakdown = creditScore.breakdown;
 
   const criteriaText = Object.entries(breakdown)
@@ -23,7 +25,7 @@ export function buildCreditScoreContext(creditScore: CreditScoreResult): string 
       const percentage = (criterion.points / criterion.maxPoints) * 100;
       return `- ${criterion.label}: ${criterion.points}/${criterion.maxPoints} (${Math.round(percentage)}%)`;
     })
-    .join('\n');
+    .join("\n");
 
   return `
 **Credit Score Analysis**
@@ -34,7 +36,7 @@ Grade: ${creditScore.grade}
 ${criteriaText}
 
 **Eligibility Status:**
-${creditScore.loanEligibility.canApply ? 'Eligible to apply for loans' : 'Below minimum threshold (40 required)'}
+${creditScore.loanEligibility.canApply ? "Eligible to apply for loans" : "Below minimum threshold (40 required)"}
 Message: ${creditScore.loanEligibility.message}
 `;
 }
@@ -80,33 +82,36 @@ export function getQuickSuggestions(creditScore: CreditScoreResult): string[] {
 
   // Tax debt
   if (breakdown.taxDebt.points < breakdown.taxDebt.maxPoints * 0.5) {
-    suggestions.push('Why is my tax debt affecting my score so much?');
+    suggestions.push("Why is my tax debt affecting my score so much?");
   }
 
   // Payment history
-  if (breakdown.paymentHistory.points < breakdown.paymentHistory.maxPoints * 0.5) {
-    suggestions.push('How can I improve my payment history?');
+  if (
+    breakdown.paymentHistory.points <
+    breakdown.paymentHistory.maxPoints * 0.5
+  ) {
+    suggestions.push("How can I improve my payment history?");
   }
 
   // Debt ratio
   if (breakdown.debtRatio.points < breakdown.debtRatio.maxPoints * 0.5) {
-    suggestions.push('My debt ratio is high - what should I do?');
+    suggestions.push("My debt ratio is high - what should I do?");
   }
 
   // Revenue
   if (breakdown.revenue.points < breakdown.revenue.maxPoints * 0.5) {
-    suggestions.push('How does my revenue affect my credit score?');
+    suggestions.push("How does my revenue affect my credit score?");
   }
 
   // Company age
   if (breakdown.companyAge.points < breakdown.companyAge.maxPoints * 0.5) {
-    suggestions.push('Is my company too young for loans?');
+    suggestions.push("Is my company too young for loans?");
   }
 
   // Default suggestions if score is good
   if (suggestions.length === 0) {
-    suggestions.push('What can I do to maintain my excellent score?');
-    suggestions.push('Which loan products are best for me?');
+    suggestions.push("What can I do to maintain my excellent score?");
+    suggestions.push("Which loan products are best for me?");
   }
 
   return suggestions.slice(0, 3);
@@ -115,18 +120,21 @@ export function getQuickSuggestions(creditScore: CreditScoreResult): string[] {
 /**
  * Validate message before sending to API
  */
-export function validateUserMessage(message: string): { valid: boolean; error?: string } {
-  if (!message || typeof message !== 'string') {
-    return { valid: false, error: 'Message must be a non-empty string' };
+export function validateUserMessage(message: string): {
+  valid: boolean;
+  error?: string;
+} {
+  if (!message || typeof message !== "string") {
+    return { valid: false, error: "Message must be a non-empty string" };
   }
 
   const trimmed = message.trim();
   if (trimmed.length === 0) {
-    return { valid: false, error: 'Message cannot be empty' };
+    return { valid: false, error: "Message cannot be empty" };
   }
 
   if (trimmed.length > 2000) {
-    return { valid: false, error: 'Message is too long (max 2000 characters)' };
+    return { valid: false, error: "Message is too long (max 2000 characters)" };
   }
 
   return { valid: true };
@@ -135,8 +143,10 @@ export function validateUserMessage(message: string): { valid: boolean; error?: 
 /**
  * Format chat history for API context
  */
-export function formatChatHistory(messages: ChatMessage[]): Array<{ role: string; content: string }> {
-  return messages.map(msg => ({
+export function formatChatHistory(
+  messages: ChatMessage[],
+): Array<{ role: string; content: string }> {
+  return messages.map((msg) => ({
     role: msg.role,
     content: msg.content,
   }));

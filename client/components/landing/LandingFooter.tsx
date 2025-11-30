@@ -1,20 +1,20 @@
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 export function LandingFooter() {
   const currentYear = new Date().getFullYear();
 
   const productLinks = [
-    { label: 'Dashboard', href: '#' },
-    { label: 'Trend Predictor', href: '#' },
-    { label: 'Gap Finder', href: '#' },
-    { label: 'For Investors & VCs', href: '#' },
+    { label: "Dashboard", href: "#" },
+    { label: "Trend Predictor", href: "#" },
+    { label: "Gap Finder", href: "#" },
+    { label: "For Investors & VCs", href: "#" },
   ];
 
   const resourcesLinks = [
-    { label: 'Blogs & Insights', href: '#' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Case Studies', href: '#' },
-    { label: 'Contact us', href: '#' },
+    { label: "Blogs & Insights", href: "#" },
+    { label: "FAQ", href: "#" },
+    { label: "Case Studies", href: "#" },
+    { label: "Contact us", href: "#" },
   ];
 
   return (
@@ -26,7 +26,9 @@ export function LandingFooter() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-success to-emerald-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-sm">K</span>
+                <span className="text-white font-heading font-bold text-sm">
+                  K
+                </span>
               </div>
               <span className="text-sm font-heading font-bold">KÖBİ</span>
             </div>
@@ -36,9 +38,9 @@ export function LandingFooter() {
             {/* Social Icons */}
             <div className="flex gap-4">
               {[
-                { Icon: Linkedin, label: 'LinkedIn' },
-                { Icon: Twitter, label: 'Twitter' },
-                { Icon: Github, label: 'GitHub' },
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Twitter, label: "Twitter" },
+                { Icon: Github, label: "GitHub" },
               ].map(({ Icon, label }) => (
                 <a
                   key={label}
@@ -54,11 +56,16 @@ export function LandingFooter() {
 
           {/* Product Column */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">Məhsul və Həllər</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">
+              Məhsul və Həllər
+            </h4>
             <ul className="space-y-3">
-              {productLinks.map(link => (
+              {productLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-success transition-colors">
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-400 hover:text-success transition-colors"
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -68,11 +75,16 @@ export function LandingFooter() {
 
           {/* Resources Column */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">Resurslar və Şirkət</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">
+              Resurslar və Şirkət
+            </h4>
             <ul className="space-y-3">
-              {resourcesLinks.map(link => (
+              {resourcesLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-success transition-colors">
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-400 hover:text-success transition-colors"
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -82,7 +94,9 @@ export function LandingFooter() {
 
           {/* Newsletter Column */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">Xəbərdarlıqlar</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-gray-300">
+              Xəbərdarlıqlar
+            </h4>
             <p className="text-sm text-gray-400 mb-4">
               Son trendlər haqqında məlumat alın
             </p>

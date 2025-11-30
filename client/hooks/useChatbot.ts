@@ -1,6 +1,6 @@
-import { useState, useCallback, useRef } from 'react';
-import { ChatMessage, ChatResponse, CreditScoreResult } from '@shared/api';
-import { buildCreditScoreContext, getQuickSuggestions } from '@shared/chatbot';
+import { useState, useCallback, useRef } from "react";
+import { ChatMessage, ChatResponse, CreditScoreResult } from "@shared/api";
+import { buildCreditScoreContext, getQuickSuggestions } from "@shared/chatbot";
 
 export function useChatbot(creditScore: CreditScoreResult) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -19,7 +19,7 @@ export function useChatbot(creditScore: CreditScoreResult) {
   const sendMessage = useCallback(
     async (userMessage: string) => {
       if (!userMessage.trim()) {
-        setError('Message cannot be empty');
+        setError("Message cannot be empty");
         return;
       }
 
@@ -29,7 +29,7 @@ export function useChatbot(creditScore: CreditScoreResult) {
       try {
         // Add user message to history
         const newUserMessage: ChatMessage = {
-          role: 'user',
+          role: "user",
           content: userMessage,
           timestamp: Date.now(),
         };
@@ -46,24 +46,24 @@ export function useChatbot(creditScore: CreditScoreResult) {
         };
 
         // Call backend API
-        const response = await fetch('/api/chat/analyze-credit-score', {
-          method: 'POST',
+        const response = await fetch("/api/chat/analyze-credit-score", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
         });
 
         if (!response.ok) {
           const data = await response.json();
-          throw new Error(data.error || 'Failed to get response');
+          throw new Error(data.error || "Failed to get response");
         }
 
         const chatResponse: ChatResponse = await response.json();
 
         // Add AI response to history
         const assistantMessage: ChatMessage = {
-          role: 'assistant',
+          role: "assistant",
           content: chatResponse.message,
           timestamp: Date.now(),
         };
@@ -77,9 +77,10 @@ export function useChatbot(creditScore: CreditScoreResult) {
           setSuggestions(chatResponse.suggestions);
         }
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
+        const errorMessage =
+          err instanceof Error ? err.message : "Unknown error occurred";
         setError(errorMessage);
-        console.error('Chatbot error:', err);
+        console.error("Chatbot error:", err);
 
         // Remove the user message if API call failed
         const messagesWithoutLast = messagesRef.current.slice(0, -1);
@@ -89,7 +90,7 @@ export function useChatbot(creditScore: CreditScoreResult) {
         setIsLoading(false);
       }
     },
-    [creditScore]
+    [creditScore],
   );
 
   // Clear chat history
@@ -103,7 +104,7 @@ export function useChatbot(creditScore: CreditScoreResult) {
   // Get welcome message
   const getWelcomeMessage = useCallback((): ChatMessage => {
     return {
-      role: 'assistant',
+      role: "assistant",
       content: `Hi there! 👋 I'm here to help you understand your credit score. You've scored ${creditScore.score}/100 (Grade ${creditScore.grade}). I can explain specific factors that affect your score and provide recommendations to improve it. What would you like to know?`,
       timestamp: Date.now(),
     };

@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 
 export function LandingNav() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Haqqımızda', href: '#about' },
-    { label: 'Platformamız', href: '#platform' },
-    { label: 'Həllər', href: '#solutions' },
-    { label: 'Xidmətlər', href: '#services' },
-    { label: 'Resurslar', href: '#resources' },
+    { label: "Haqqımızda", href: "#about" },
+    { label: "Platformamız", href: "#platform" },
+    { label: "Həllər", href: "#solutions" },
+    { label: "Xidmətlər", href: "#services" },
+    { label: "Resurslar", href: "#resources" },
   ];
 
   const handleLoginClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -27,17 +27,21 @@ export function LandingNav() {
           {/* Logo */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-heading font-bold text-lg">K</span>
+              <span className="text-white font-heading font-bold text-lg">
+                K
+              </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-heading font-bold text-foreground leading-none">KÖBİ</span>
+              <span className="text-sm font-heading font-bold text-foreground leading-none">
+                KÖBİ
+              </span>
               <span className="text-xs text-muted-foreground">Platform</span>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -64,7 +68,11 @@ export function LandingNav() {
               className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -72,7 +80,7 @@ export function LandingNav() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border py-4 space-y-3">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -81,7 +89,10 @@ export function LandingNav() {
                 {link.label}
               </a>
             ))}
-            <Button onClick={handleLoginClick} className="w-full bg-secondary hover:bg-secondary/90">
+            <Button
+              onClick={handleLoginClick}
+              className="w-full bg-secondary hover:bg-secondary/90"
+            >
               Giriş
             </Button>
           </div>

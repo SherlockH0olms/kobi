@@ -1,10 +1,10 @@
-import { LandingNav } from '@/components/LandingNav';
-import { HeroSection } from '@/components/landing/HeroSection';
-import { TargetUserCards } from '@/components/landing/TargetUserCards';
-import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
-import { PricingCards } from '@/components/landing/PricingCards';
-import { FAQAccordion } from '@/components/landing/FAQAccordion';
-import { LandingFooter } from '@/components/landing/LandingFooter';
+import { LandingNav } from "@/components/LandingNav";
+import { HeroSection } from "@/components/landing/HeroSection";
+import { TargetUserCards } from "@/components/landing/TargetUserCards";
+import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
+import { PricingCards } from "@/components/landing/PricingCards";
+import { FAQAccordion } from "@/components/landing/FAQAccordion";
+import { LandingFooter } from "@/components/landing/LandingFooter";
 
 export default function LandingPage() {
   return (

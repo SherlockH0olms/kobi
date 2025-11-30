@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface FAQItem {
   question: string;
@@ -13,7 +13,13 @@ interface FAQItemComponentProps extends FAQItem {
   onToggle: () => void;
 }
 
-function FAQItemComponent({ question, answer, index, isOpen, onToggle }: FAQItemComponentProps) {
+function FAQItemComponent({
+  question,
+  answer,
+  index,
+  isOpen,
+  onToggle,
+}: FAQItemComponentProps) {
   return (
     <div className="bg-white border border-border rounded-xl overflow-hidden hover:border-secondary transition-colors">
       <button
@@ -24,12 +30,14 @@ function FAQItemComponent({ question, answer, index, isOpen, onToggle }: FAQItem
           <div className="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
             Q{index + 1}
           </div>
-          <span className="text-base font-medium text-foreground pt-0.5">{question}</span>
+          <span className="text-base font-medium text-foreground pt-0.5">
+            {question}
+          </span>
         </div>
         <div
           className={cn(
-            'w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center flex-shrink-0 transition-transform duration-300',
-            isOpen && 'rotate-180'
+            "w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center flex-shrink-0 transition-transform duration-300",
+            isOpen && "rotate-180",
           )}
         >
           <ChevronDown className="w-5 h-5" />
@@ -38,7 +46,9 @@ function FAQItemComponent({ question, answer, index, isOpen, onToggle }: FAQItem
 
       {isOpen && (
         <div className="px-6 py-4 border-t border-border bg-muted/20">
-          <p className="text-muted-foreground leading-relaxed pl-12">{answer}</p>
+          <p className="text-muted-foreground leading-relaxed pl-12">
+            {answer}
+          </p>
         </div>
       )}
     </div>
@@ -50,24 +60,24 @@ export function FAQAccordion() {
 
   const faqs: FAQItem[] = [
     {
-      question: 'Hansı platformaları skan edirsiniz?',
+      question: "Hansı platformaları skan edirsiniz?",
       answer:
-        'Bizim AI motoru Twitter, Reddit, ProductHunt, LinkedIn, Hacker News, TechCrunch və daha 15+ başlıca platformaya real-time müraciət edir. Gözəyən məlumatları işləyir və haqqında müşahidə edib anlayışlı nəticə verir.',
+        "Bizim AI motoru Twitter, Reddit, ProductHunt, LinkedIn, Hacker News, TechCrunch və daha 15+ başlıca platformaya real-time müraciət edir. Gözəyən məlumatları işləyir və haqqında müşahidə edib anlayışlı nəticə verir.",
     },
     {
-      question: 'Web scraping ilə ChatGPT istifadə etməkdən nə fərqi var?',
+      question: "Web scraping ilə ChatGPT istifadə etməkdən nə fərqi var?",
       answer:
-        'Bizim metodologiya sadəcə məlumatları toplamaqdan çox dərindən gedir. AI sistemi kəmiyyət analitikası aparır, paylı şəkildə nəticə verir və fəlsəfə məmətlərini digər veriliənlərlə düzəltir. Beləliklə sən gerçek, əsl boşluqları taparsın.',
+        "Bizim metodologiya sadəcə məlumatları toplamaqdan çox dərindən gedir. AI sistemi kəmiyyət analitikası aparır, paylı şəkildə nəticə verir və fəlsəfə məmətlərini digər veriliənlərlə düzəltir. Beləliklə sən gerçek, əsl boşluqları taparsın.",
     },
     {
-      question: 'Insights nə vaxt yenilənir?',
+      question: "Insights nə vaxt yenilənir?",
       answer:
-        'Platformamız 24/7 real-time məlumatları işləyir. Əsas məlumatlar saatda bir dəfə yenilənir, daha dəqiq boşluq analitikası isə günündə iki dəfə aparılır. Enterprise abunəçiləri real-time yeniləmə əldə edə bilərlər.',
+        "Platformamız 24/7 real-time məlumatları işləyir. Əsas məlumatlar saatda bir dəfə yenilənir, daha dəqiq boşluq analitikası isə günündə iki dəfə aparılır. Enterprise abunəçiləri real-time yeniləmə əldə edə bilərlər.",
     },
     {
-      question: 'Dataları öz alətlərimə export edə bilərəm?',
+      question: "Dataları öz alətlərimə export edə bilərəm?",
       answer:
-        'Bəli! Business planı və üzərində olan abunəçilər CSV, JSON və PDF formatlarında məlumatları export edə bilərlər. API əlaqəsi isə Enterprise planında mövcüddur.',
+        "Bəli! Business planı və üzərində olan abunəçilər CSV, JSON və PDF formatlarında məlumatları export edə bilərlər. API əlaqəsi isə Enterprise planında mövcüddur.",
     },
   ];
 

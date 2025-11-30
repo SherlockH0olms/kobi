@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Check, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Check, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PricingTier {
   name: string;
@@ -16,13 +16,22 @@ interface PricingCardProps extends PricingTier {
   index: number;
 }
 
-function PricingCard({ name, price, description, features, cta, featured = false, index }: PricingCardProps) {
+function PricingCard({
+  name,
+  price,
+  description,
+  features,
+  cta,
+  featured = false,
+  index,
+}: PricingCardProps) {
   return (
     <div
       className={cn(
-        'bg-white rounded-2xl border border-border overflow-hidden transition-all duration-300',
-        'hover:shadow-xl',
-        featured && 'lg:scale-105 shadow-2xl lg:border-2 lg:border-success relative'
+        "bg-white rounded-2xl border border-border overflow-hidden transition-all duration-300",
+        "hover:shadow-xl",
+        featured &&
+          "lg:scale-105 shadow-2xl lg:border-2 lg:border-success relative",
       )}
     >
       {featured && (
@@ -36,14 +45,23 @@ function PricingCard({ name, price, description, features, cta, featured = false
       <div className="p-8 space-y-6">
         {/* Header */}
         <div>
-          <h3 className="text-2xl font-heading font-bold text-foreground mb-2">{name}</h3>
+          <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+            {name}
+          </h3>
           <p className="text-sm text-muted-foreground">{description}</p>
         </div>
 
         {/* Price */}
         <div className="py-4">
           <div className="flex items-baseline gap-1">
-            <span className={cn('font-heading font-bold', featured ? 'text-6xl text-secondary' : 'text-5xl text-foreground')}>
+            <span
+              className={cn(
+                "font-heading font-bold",
+                featured
+                  ? "text-6xl text-secondary"
+                  : "text-5xl text-foreground",
+              )}
+            >
               ${price}
             </span>
             <span className="text-2xl text-muted-foreground">.00</span>
@@ -53,8 +71,11 @@ function PricingCard({ name, price, description, features, cta, featured = false
 
         {/* CTA Button */}
         <Button
-          className={cn('w-full h-12 font-heading font-semibold text-base', featured ? 'bg-secondary hover:bg-secondary/90' : '')}
-          variant={featured ? 'default' : 'outline'}
+          className={cn(
+            "w-full h-12 font-heading font-semibold text-base",
+            featured ? "bg-secondary hover:bg-secondary/90" : "",
+          )}
+          variant={featured ? "default" : "outline"}
         >
           {cta}
         </Button>
@@ -70,8 +91,10 @@ function PricingCard({ name, price, description, features, cta, featured = false
               )}
               <span
                 className={cn(
-                  'text-sm',
-                  feature.included ? 'text-muted-foreground' : 'text-muted-foreground/50'
+                  "text-sm",
+                  feature.included
+                    ? "text-muted-foreground"
+                    : "text-muted-foreground/50",
                 )}
               >
                 {feature.text}
@@ -87,50 +110,50 @@ function PricingCard({ name, price, description, features, cta, featured = false
 export function PricingCards() {
   const tiers: PricingTier[] = [
     {
-      name: 'Pulsuz Plan',
+      name: "Pulsuz Plan",
       price: 0,
-      description: 'Başlamaq üçün mükəmməl',
-      cta: 'Başlayın',
+      description: "Başlamaq üçün mükəmməl",
+      cta: "Başlayın",
       features: [
-        { text: '10 pulsuz kredit', included: true },
-        { text: '1 təbəqə uçotu (Aylıq)', included: true },
-        { text: 'Əsas niş generatoru', included: true },
-        { text: 'Sadə AI cavabı', included: false },
-        { text: 'Ekspert dəstəyi', included: false },
-        { text: 'Xəbərdarlıqlar', included: false },
+        { text: "10 pulsuz kredit", included: true },
+        { text: "1 təbəqə uçotu (Aylıq)", included: true },
+        { text: "Əsas niş generatoru", included: true },
+        { text: "Sadə AI cavabı", included: false },
+        { text: "Ekspert dəstəyi", included: false },
+        { text: "Xəbərdarlıqlar", included: false },
       ],
     },
     {
-      name: 'Biznes Planı',
+      name: "Biznes Planı",
       price: 39,
-      description: 'Böyümmə üçün əsas həllər',
-      cta: 'Başlayın',
+      description: "Böyümmə üçün əsas həllər",
+      cta: "Başlayın",
       featured: true,
       features: [
-        { text: 'Limitsiz təhlil', included: true },
-        { text: '10+ data mənbəyi', included: true },
-        { text: 'Gap/Niş vizual bazar xəritəsi', included: true },
-        { text: 'Trend Proqnozlaşdırma', included: true },
-        { text: 'Fürsət Radarı', included: true },
-        { text: 'Real-time xəbərdarlıqlar', included: true },
-        { text: 'PRD təbəqə generatoru', included: true },
-        { text: 'Rəqib analitikası', included: true },
-        { text: 'PDF/CSV eksport', included: true },
-        { text: '10 təbəqə üzvləri', included: true },
+        { text: "Limitsiz təhlil", included: true },
+        { text: "10+ data mənbəyi", included: true },
+        { text: "Gap/Niş vizual bazar xəritəsi", included: true },
+        { text: "Trend Proqnozlaşdırma", included: true },
+        { text: "Fürsət Radarı", included: true },
+        { text: "Real-time xəbərdarlıqlar", included: true },
+        { text: "PRD təbəqə generatoru", included: true },
+        { text: "Rəqib analitikası", included: true },
+        { text: "PDF/CSV eksport", included: true },
+        { text: "10 təbəqə üzvləri", included: true },
       ],
     },
     {
-      name: 'Enterprise Planı',
+      name: "Enterprise Planı",
       price: 99,
-      description: 'Korporativ tələblər üçün',
-      cta: 'Bizimlə əlaqə saxlayın',
+      description: "Korporativ tələblər üçün",
+      cta: "Bizimlə əlaqə saxlayın",
       features: [
-        { text: 'Limitsiz hər şey', included: true },
-        { text: '20+ təbəqə üzvləri', included: true },
-        { text: 'Çoxsəviyyəli məlumat', included: true },
-        { text: 'Xüsusi AI model', included: true },
-        { text: 'Aylıq müəssisə hesabatı', included: true },
-        { text: '24/7 dəstək', included: true },
+        { text: "Limitsiz hər şey", included: true },
+        { text: "20+ təbəqə üzvləri", included: true },
+        { text: "Çoxsəviyyəli məlumat", included: true },
+        { text: "Xüsusi AI model", included: true },
+        { text: "Aylıq müəssisə hesabatı", included: true },
+        { text: "24/7 dəstək", included: true },
       ],
     },
   ];

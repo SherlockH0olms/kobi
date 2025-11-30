@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { CreditScoreResult, ChatMessage } from '@shared/api';
-import { useChatbot } from '@/hooks/useChatbot';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
-import { Send, X, AlertCircle, Loader } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { CreditScoreResult, ChatMessage } from "@shared/api";
+import { useChatbot } from "@/hooks/useChatbot";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { Send, X, AlertCircle, Loader } from "lucide-react";
 
 interface ChatbotProps {
   creditScore: CreditScoreResult;
@@ -12,10 +12,22 @@ interface ChatbotProps {
   isExpanded?: boolean;
 }
 
-export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProps) {
-  const { messages, isLoading, error, suggestions, sendMessage, clearChat, getWelcomeMessage, initializeSuggestions } =
-    useChatbot(creditScore);
-  const [input, setInput] = useState('');
+export function Chatbot({
+  creditScore,
+  onClose,
+  isExpanded = true,
+}: ChatbotProps) {
+  const {
+    messages,
+    isLoading,
+    error,
+    suggestions,
+    sendMessage,
+    clearChat,
+    getWelcomeMessage,
+    initializeSuggestions,
+  } = useChatbot(creditScore);
+  const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasInitialized = useRef(false);
 
@@ -29,7 +41,7 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
 
   // Auto-scroll to latest message
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSendMessage = async (messageText?: string) => {
@@ -37,7 +49,7 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
     if (!textToSend) return;
 
     await sendMessage(textToSend);
-    setInput('');
+    setInput("");
   };
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -56,7 +68,9 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
       <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/5 to-secondary/5">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-          <h3 className="font-heading font-bold text-foreground">Credit Score Assistant</h3>
+          <h3 className="font-heading font-bold text-foreground">
+            Credit Score Assistant
+          </h3>
         </div>
         {onClose && (
           <button
@@ -78,25 +92,36 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
               <div className="w-6 h-6 bg-primary rounded-full" />
             </div>
             <div>
-              <p className="text-sm font-medium text-foreground mb-2">Welcome to Credit Score Assistant</p>
+              <p className="text-sm font-medium text-foreground mb-2">
+                Welcome to Credit Score Assistant
+              </p>
               <p className="text-xs text-muted-foreground max-w-xs">
-                Ask me anything about your credit score, factors affecting it, or how to improve it.
+                Ask me anything about your credit score, factors affecting it,
+                or how to improve it.
               </p>
             </div>
           </div>
         ) : (
           <>
             {messages.map((message, idx) => (
-              <div key={idx} className={cn('flex gap-2', message.role === 'user' ? 'justify-end' : 'justify-start')}>
+              <div
+                key={idx}
+                className={cn(
+                  "flex gap-2",
+                  message.role === "user" ? "justify-end" : "justify-start",
+                )}
+              >
                 <div
                   className={cn(
-                    'max-w-xs lg:max-w-md px-4 py-2 rounded-lg text-sm',
-                    message.role === 'user'
-                      ? 'bg-primary text-primary-foreground rounded-br-none'
-                      : 'bg-muted text-muted-foreground border border-border rounded-bl-none'
+                    "max-w-xs lg:max-w-md px-4 py-2 rounded-lg text-sm",
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground rounded-br-none"
+                      : "bg-muted text-muted-foreground border border-border rounded-bl-none",
                   )}
                 >
-                  <p className="whitespace-pre-wrap break-words">{message.content}</p>
+                  <p className="whitespace-pre-wrap break-words">
+                    {message.content}
+                  </p>
                 </div>
               </div>
             ))}
@@ -124,7 +149,9 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
       {/* Suggestions */}
       {!hasMessages && suggestions.length > 0 && (
         <div className="px-4 py-3 border-t border-border space-y-2 bg-muted/20">
-          <p className="text-xs font-medium text-muted-foreground">Quick questions:</p>
+          <p className="text-xs font-medium text-muted-foreground">
+            Quick questions:
+          </p>
           <div className="space-y-1.5">
             {suggestions.map((suggestion, idx) => (
               <button
@@ -146,7 +173,7 @@ export function Chatbot({ creditScore, onClose, isExpanded = true }: ChatbotProp
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => {
-              if (e.key === 'Enter' && !isLoading) {
+              if (e.key === "Enter" && !isLoading) {
                 handleSendMessage();
               }
             }}
