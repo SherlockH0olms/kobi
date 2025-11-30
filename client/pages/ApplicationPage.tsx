@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
-import { ApplicationModal } from '@/components/ApplicationModal';
-import { Button } from '@/components/ui/button';
-import { CompanyData, CreditScoreResult } from '@shared/api';
-import { ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { ApplicationModal } from "@/components/ApplicationModal";
+import { Button } from "@/components/ui/button";
+import { CompanyData, CreditScoreResult } from "@shared/api";
+import { ArrowLeft } from "lucide-react";
 
 export default function ApplicationPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
-  const [creditScore, setCreditScore] = useState<CreditScoreResult | null>(null);
+  const [creditScore, setCreditScore] = useState<CreditScoreResult | null>(
+    null,
+  );
   const [selectedLoanIds, setSelectedLoanIds] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [applicationId, setApplicationId] = useState<string | null>(null);
@@ -28,7 +30,7 @@ export default function ApplicationPage() {
       setSelectedLoanIds(state.selectedLoanIds);
     } else {
       // Redirect if no data
-      navigate('/');
+      navigate("/");
     }
   }, [location, navigate]);
 
@@ -36,7 +38,7 @@ export default function ApplicationPage() {
     setIsSubmitting(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Generate application ID
       const appId = `APP-${Date.now()}`;
@@ -62,7 +64,7 @@ export default function ApplicationPage() {
 
   if (!companyData || !creditScore) {
     return (
-      <Layout onLogout={() => navigate('/')}>
+      <Layout onLogout={() => navigate("/")}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-muted-foreground">Loading...</p>
         </div>
@@ -71,12 +73,12 @@ export default function ApplicationPage() {
   }
 
   return (
-    <Layout companyData={companyData} onLogout={() => navigate('/')}>
+    <Layout companyData={companyData} onLogout={() => navigate("/")}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-8">
           <button
             onClick={() =>
-              navigate('/loans', {
+              navigate("/loans", {
                 state: { companyData, creditScore },
               })
             }
@@ -89,7 +91,8 @@ export default function ApplicationPage() {
             Submit Your Application
           </h1>
           <p className="text-muted-foreground">
-            Apply to multiple lenders at once and get offers within 1-2 business days
+            Apply to multiple lenders at once and get offers within 1-2 business
+            days
           </p>
         </div>
 
@@ -110,7 +113,9 @@ export default function ApplicationPage() {
                 Next Steps
               </h3>
               <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Lenders will review your application within 1-2 business days</li>
+                <li>
+                  Lenders will review your application within 1-2 business days
+                </li>
                 <li>You'll receive emails with loan offers and terms</li>
                 <li>Compare the offers and select the best option</li>
                 <li>Finalize your application with the chosen lender</li>
@@ -118,7 +123,7 @@ export default function ApplicationPage() {
             </div>
 
             <Button
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               variant="outline"
               className="w-full"
             >

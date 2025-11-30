@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { CompanyData } from '@shared/api';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CompanyData } from "@shared/api";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function CompanyDataPage() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function CompanyDataPage() {
   }
 
   const handleInputChange = (field: keyof CompanyData, value: any) => {
-    setCompanyData(prev => {
+    setCompanyData((prev) => {
       if (!prev) return prev;
       return { ...prev, [field]: value };
     });
@@ -43,20 +43,20 @@ export default function CompanyDataPage() {
     setIsLoading(true);
     try {
       // Simulate save
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       // Navigate to credit score page with company data
-      navigate('/credit-score', { state: { companyData } });
+      navigate("/credit-score", { state: { companyData } });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleGoBack = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
-    <Layout companyData={companyData} onLogout={() => navigate('/')}>
+    <Layout companyData={companyData} onLogout={() => navigate("/")}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-8">
           <button
@@ -87,7 +87,7 @@ export default function CompanyDataPage() {
                   <Input
                     id="name"
                     value={companyData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -97,7 +97,9 @@ export default function CompanyDataPage() {
                   <Input
                     id="regNumber"
                     value={companyData.registrationNumber}
-                    onChange={(e) => handleInputChange('registrationNumber', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("registrationNumber", e.target.value)
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -108,7 +110,9 @@ export default function CompanyDataPage() {
                     id="founding"
                     type="date"
                     value={companyData.foundingDate}
-                    onChange={(e) => handleInputChange('foundingDate', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("foundingDate", e.target.value)
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -118,7 +122,9 @@ export default function CompanyDataPage() {
                   <Input
                     id="industry"
                     value={companyData.industry}
-                    onChange={(e) => handleInputChange('industry', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("industry", e.target.value)
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -138,7 +144,9 @@ export default function CompanyDataPage() {
                     id="employees"
                     type="number"
                     value={companyData.employees}
-                    onChange={(e) => handleInputChange('employees', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange("employees", parseInt(e.target.value))
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -149,7 +157,12 @@ export default function CompanyDataPage() {
                     id="revenue"
                     type="number"
                     value={companyData.annualRevenue}
-                    onChange={(e) => handleInputChange('annualRevenue', parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "annualRevenue",
+                        parseFloat(e.target.value),
+                      )
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -160,7 +173,9 @@ export default function CompanyDataPage() {
                     id="taxDebt"
                     type="number"
                     value={companyData.taxDebt}
-                    onChange={(e) => handleInputChange('taxDebt', parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange("taxDebt", parseFloat(e.target.value))
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -171,7 +186,9 @@ export default function CompanyDataPage() {
                     id="totalDebt"
                     type="number"
                     value={companyData.totalDebt}
-                    onChange={(e) => handleInputChange('totalDebt', parseFloat(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange("totalDebt", parseFloat(e.target.value))
+                    }
                     disabled={!isEditing}
                     className="h-11"
                   />
@@ -195,7 +212,12 @@ export default function CompanyDataPage() {
                     min="0"
                     max="100"
                     value={companyData.paymentHistory}
-                    onChange={(e) => handleInputChange('paymentHistory', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "paymentHistory",
+                        parseInt(e.target.value),
+                      )
+                    }
                     disabled={!isEditing}
                   />
                 </div>
@@ -209,7 +231,9 @@ export default function CompanyDataPage() {
                     min="-50"
                     max="50"
                     value={companyData.growthRate}
-                    onChange={(e) => handleInputChange('growthRate', parseInt(e.target.value))}
+                    onChange={(e) =>
+                      handleInputChange("growthRate", parseInt(e.target.value))
+                    }
                     disabled={!isEditing}
                   />
                 </div>
@@ -219,8 +243,11 @@ export default function CompanyDataPage() {
             {/* Info box */}
             <div className="bg-primary/5 border border-primary/10 rounded-lg p-4">
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">Note:</span> This data was pulled from ASAN İmza. 
-                {isEditing ? ' You can edit it for testing purposes.' : ' Click "Edit" to make changes.'}
+                <span className="font-medium text-foreground">Note:</span> This
+                data was pulled from ASAN İmza.
+                {isEditing
+                  ? " You can edit it for testing purposes."
+                  : ' Click "Edit" to make changes.'}
               </p>
             </div>
           </div>

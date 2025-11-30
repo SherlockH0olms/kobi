@@ -1,6 +1,6 @@
-import { useState, useCallback, useMemo } from 'react';
-import { CompanyData, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@shared/creditScoring';
+import { useState, useCallback, useMemo } from "react";
+import { CompanyData, CreditScoreResult } from "@shared/api";
+import { calculateCreditScore } from "@shared/creditScoring";
 
 interface CacheEntry {
   companyDataId: string;
@@ -43,13 +43,16 @@ export function useCreditScore() {
         setIsCalculating(false);
         return result;
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Failed to calculate credit score';
+        const errorMessage =
+          err instanceof Error
+            ? err.message
+            : "Failed to calculate credit score";
         setError(errorMessage);
         setIsCalculating(false);
         throw err;
       }
     },
-    [cache]
+    [cache],
   );
 
   const clearCache = useCallback(() => {

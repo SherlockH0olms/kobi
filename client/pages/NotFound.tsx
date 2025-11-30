@@ -1,16 +1,16 @@
-import { useLocation, Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { Layout } from '@/components/Layout';
-import { Button } from '@/components/ui/button';
-import { AlertCircle } from 'lucide-react';
+import { useLocation, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { AlertCircle } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
     console.error(
-      '404 Error: User attempted to access non-existent route:',
-      location.pathname
+      "404 Error: User attempted to access non-existent route:",
+      location.pathname,
     );
   }, [location.pathname]);
 
@@ -23,15 +23,18 @@ const NotFound = () => {
               <AlertCircle className="w-8 h-8 text-destructive" />
             </div>
           </div>
-          <h1 className="text-6xl font-heading font-bold text-foreground mb-2">404</h1>
-          <p className="text-xl font-medium text-foreground mb-2">Page Not Found</p>
+          <h1 className="text-6xl font-heading font-bold text-foreground mb-2">
+            404
+          </h1>
+          <p className="text-xl font-medium text-foreground mb-2">
+            Page Not Found
+          </p>
           <p className="text-muted-foreground mb-8">
-            The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+            The page you're looking for doesn't exist or has been moved. Let's
+            get you back on track.
           </p>
           <Link to="/">
-            <Button className="text-base">
-              Return to Home
-            </Button>
+            <Button className="text-base">Return to Home</Button>
           </Link>
         </div>
       </div>

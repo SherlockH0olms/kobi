@@ -1,5 +1,8 @@
-import { RequestHandler } from 'express';
-import { SubmitApplicationRequest, SubmitApplicationResponse } from '@shared/api';
+import { RequestHandler } from "express";
+import {
+  SubmitApplicationRequest,
+  SubmitApplicationResponse,
+} from "@shared/api";
 
 // Submit loan applications
 export const handleSubmitApplication: RequestHandler = (req, res) => {
@@ -7,7 +10,7 @@ export const handleSubmitApplication: RequestHandler = (req, res) => {
 
   if (!companyData || !loanOfferIds || loanOfferIds.length === 0) {
     res.status(400).json({
-      error: 'Company data and at least one loan offer ID are required',
+      error: "Company data and at least one loan offer ID are required",
     });
     return;
   }
@@ -25,19 +28,23 @@ export const handleSubmitApplication: RequestHandler = (req, res) => {
     // Mock response
     const response: SubmitApplicationResponse = {
       applicationId,
-      status: 'submitted',
+      status: "submitted",
       message: `Your application has been submitted to ${loanOfferIds.length} lender(s). You will receive updates shortly.`,
     };
 
     // Log for debugging
-    console.log(`Application ${applicationId} submitted for company: ${companyData.name}`);
-    console.log(`Applying to ${loanOfferIds.length} lenders: ${loanOfferIds.join(', ')}`);
+    console.log(
+      `Application ${applicationId} submitted for company: ${companyData.name}`,
+    );
+    console.log(
+      `Applying to ${loanOfferIds.length} lenders: ${loanOfferIds.join(", ")}`,
+    );
 
     res.json(response);
   } catch (error) {
     res.status(500).json({
-      error: 'Failed to submit application',
-      details: error instanceof Error ? error.message : 'Unknown error',
+      error: "Failed to submit application",
+      details: error instanceof Error ? error.message : "Unknown error",
     });
   }
 };

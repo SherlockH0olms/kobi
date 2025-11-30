@@ -1,8 +1,8 @@
-import { LoanOffer } from '@shared/api';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { TrendingDown, Calendar, CheckCircle } from 'lucide-react';
+import { LoanOffer } from "@shared/api";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { TrendingDown, Calendar, CheckCircle } from "lucide-react";
 
 interface LoanCardProps {
   loan: LoanOffer;
@@ -11,21 +11,30 @@ interface LoanCardProps {
   className?: string;
 }
 
-export function LoanCard({ loan, onApply, isSelected = false, className }: LoanCardProps) {
+export function LoanCard({
+  loan,
+  onApply,
+  isSelected = false,
+  className,
+}: LoanCardProps) {
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border transition-all duration-200 overflow-hidden',
+        "bg-white rounded-lg border transition-all duration-200 overflow-hidden",
         isSelected
-          ? 'border-primary shadow-lg ring-2 ring-primary/20'
-          : 'border-border hover:shadow-md hover:border-primary/50'
+          ? "border-primary shadow-lg ring-2 ring-primary/20"
+          : "border-border hover:shadow-md hover:border-primary/50",
       )}
     >
       {/* Header with BOKT name and rate highlight */}
       <div className="px-6 py-4 bg-gradient-to-r from-muted/50 to-muted/30 border-b border-border flex items-start justify-between">
         <div>
-          <h3 className="font-heading font-bold text-lg text-foreground">{loan.boktName}</h3>
-          <p className="text-sm text-muted-foreground mt-1">{loan.processingTime} processing</p>
+          <h3 className="font-heading font-bold text-lg text-foreground">
+            {loan.boktName}
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            {loan.processingTime} processing
+          </p>
         </div>
         {isSelected && (
           <CheckCircle className="w-6 h-6 text-success flex-shrink-0" />
@@ -39,7 +48,9 @@ export function LoanCard({ loan, onApply, isSelected = false, className }: LoanC
           <div className="flex items-center gap-2">
             <TrendingDown className="w-5 h-5 text-primary" />
             <div>
-              <p className="text-xs text-muted-foreground">Annual Interest Rate</p>
+              <p className="text-xs text-muted-foreground">
+                Annual Interest Rate
+              </p>
               <p className="text-lg font-heading font-bold text-primary">
                 {loan.annualInterestRate}%
               </p>
@@ -52,7 +63,8 @@ export function LoanCard({ loan, onApply, isSelected = false, className }: LoanC
           <div>
             <p className="text-xs text-muted-foreground mb-1">Loan Amount</p>
             <p className="text-sm font-semibold text-foreground">
-              {formatCurrency(loan.loanAmountMin)} - {formatCurrency(loan.loanAmountMax)}
+              {formatCurrency(loan.loanAmountMin)} -{" "}
+              {formatCurrency(loan.loanAmountMax)}
             </p>
           </div>
           <div>
@@ -97,10 +109,10 @@ export function LoanCard({ loan, onApply, isSelected = false, className }: LoanC
       <div className="px-6 py-4 border-t border-border bg-muted/20 flex gap-2">
         <Button
           onClick={() => onApply?.(loan.id)}
-          variant={isSelected ? 'default' : 'outline'}
+          variant={isSelected ? "default" : "outline"}
           className="flex-1"
         >
-          {isSelected ? 'Selected' : 'Select'}
+          {isSelected ? "Selected" : "Select"}
         </Button>
       </div>
     </div>
@@ -108,9 +120,9 @@ export function LoanCard({ loan, onApply, isSelected = false, className }: LoanC
 }
 
 function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'AZN',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "AZN",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);

@@ -3,16 +3,16 @@ export {
   getEligibleLoans,
   getLoanById,
   getLoansByIds,
-  sortLoansByInterestRate
-} from '@shared/loanMatching';
+  sortLoansByInterestRate,
+} from "@shared/loanMatching";
 
-import { LoanOffer, CompanyData } from '@shared/api';
+import { LoanOffer, CompanyData } from "@shared/api";
 
 // Additional client-specific utility function
 export function getLoanRecommendationScore(
   loan: LoanOffer,
   companyData: CompanyData,
-  creditScore: number
+  creditScore: number,
 ): number {
   let score = 0;
 
@@ -42,7 +42,10 @@ export function getLoanRecommendationScore(
   }
 
   // Processing speed bonus
-  if (loan.processingTime.includes('Same day') || loan.processingTime.includes('1 ')) {
+  if (
+    loan.processingTime.includes("Same day") ||
+    loan.processingTime.includes("1 ")
+  ) {
     score += 10;
   }
 

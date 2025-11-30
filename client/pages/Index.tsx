@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useCompanyData } from '@/hooks/useCompanyData';
-import { ArrowRight, Zap, Lock, Users } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useCompanyData } from "@/hooks/useCompanyData";
+import { ArrowRight, Zap, Lock, Users } from "lucide-react";
 
 export default function Index() {
   const navigate = useNavigate();
   const { mockASANLogin, isLoading } = useCompanyData();
-  const [email, setEmail] = useState('demo@example.com');
-  const [pin, setPin] = useState('1234');
+  const [email, setEmail] = useState("demo@example.com");
+  const [pin, setPin] = useState("1234");
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -21,9 +21,9 @@ export default function Index() {
     try {
       const companyData = await mockASANLogin(email, pin);
       // Navigate to company data page with company data
-      navigate('/company-data', { state: { companyData } });
+      navigate("/company-data", { state: { companyData } });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : "Login failed");
     }
   };
 
@@ -37,10 +37,13 @@ export default function Index() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight">
-                  Fair Credit <span className="text-primary">for Small Businesses</span>
+                  Fair Credit{" "}
+                  <span className="text-primary">for Small Businesses</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-lg">
-                  Get your AI-powered credit score and discover loans from multiple lenders in minutes. No bias, no guesswork—just fair assessment.
+                  Get your AI-powered credit score and discover loans from
+                  multiple lenders in minutes. No bias, no guesswork—just fair
+                  assessment.
                 </p>
               </div>
 
@@ -49,16 +52,21 @@ export default function Index() {
                 <div className="flex gap-3 items-start">
                   <Zap className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-medium text-foreground">AI-Powered Assessment</h3>
+                    <h3 className="font-medium text-foreground">
+                      AI-Powered Assessment
+                    </h3>
                     <p className="text-sm text-muted-foreground">
-                      Get scored based on 8 financial criteria, not subjective decisions
+                      Get scored based on 8 financial criteria, not subjective
+                      decisions
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-3 items-start">
                   <Users className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-medium text-foreground">Multiple Lenders</h3>
+                    <h3 className="font-medium text-foreground">
+                      Multiple Lenders
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       See loans from all qualifying lenders in one place
                     </p>
@@ -67,7 +75,9 @@ export default function Index() {
                 <div className="flex gap-3 items-start">
                   <Lock className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-medium text-foreground">Secure & Private</h3>
+                    <h3 className="font-medium text-foreground">
+                      Secure & Private
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                       Your data is encrypted and protected. ASAN İmza verified.
                     </p>
@@ -88,7 +98,8 @@ export default function Index() {
                     Get Started Now
                   </h2>
                   <p className="text-sm text-muted-foreground">
-                    Login with your ASAN İmza account to pull your company data automatically
+                    Login with your ASAN İmza account to pull your company data
+                    automatically
                   </p>
                 </div>
 
@@ -136,7 +147,9 @@ export default function Index() {
                     disabled={isLoading}
                     className="w-full h-12 text-base font-heading font-semibold"
                   >
-                    {isLoading ? 'Connecting to ASAN İmza...' : 'Login with ASAN İmza'}
+                    {isLoading
+                      ? "Connecting to ASAN İmza..."
+                      : "Login with ASAN İmza"}
                     {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
                   </Button>
                 </form>
@@ -153,7 +166,8 @@ export default function Index() {
                 </div>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  Your data is protected with end-to-end encryption. We never share your information without permission.
+                  Your data is protected with end-to-end encryption. We never
+                  share your information without permission.
                 </p>
               </div>
             </div>
@@ -200,24 +214,27 @@ export default function Index() {
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
             {[
               {
-                number: '1',
-                title: 'Connect',
-                description: 'Login with ASAN İmza to auto-fill your company data',
+                number: "1",
+                title: "Connect",
+                description:
+                  "Login with ASAN İmza to auto-fill your company data",
               },
               {
-                number: '2',
-                title: 'Score',
-                description: 'Get your AI-powered credit score based on 8 criteria',
+                number: "2",
+                title: "Score",
+                description:
+                  "Get your AI-powered credit score based on 8 criteria",
               },
               {
-                number: '3',
-                title: 'Match',
-                description: 'See all loans you qualify for from multiple lenders',
+                number: "3",
+                title: "Match",
+                description:
+                  "See all loans you qualify for from multiple lenders",
               },
               {
-                number: '4',
-                title: 'Apply',
-                description: 'Apply to multiple lenders with one click',
+                number: "4",
+                title: "Apply",
+                description: "Apply to multiple lenders with one click",
               },
             ].map((step) => (
               <div key={step.number} className="text-center">
@@ -227,7 +244,9 @@ export default function Index() {
                 <h3 className="font-heading font-semibold text-foreground mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>

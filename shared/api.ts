@@ -27,7 +27,7 @@ export interface CreditScoreBreakdown {
 
 export interface CreditScoreResult {
   score: number; // 0-100
-  grade: 'A' | 'B' | 'C' | 'D'; // A: 85+, B: 70-84, C: 55-69, D: <55
+  grade: "A" | "B" | "C" | "D"; // A: 85+, B: 70-84, C: 55-69, D: <55
   breakdown: CreditScoreBreakdown;
   loanEligibility: {
     canApply: boolean;
@@ -56,11 +56,11 @@ export interface LoanApplication {
   companyId: string;
   companyName: string;
   loanOfferIds: string[]; // Multiple loan applications at once
-  status: 'pending' | 'submitted' | 'approved' | 'rejected';
+  status: "pending" | "submitted" | "approved" | "rejected";
   appliedAt: string; // ISO timestamp
   responses?: {
     offerId: string;
-    status: 'pending' | 'approved' | 'rejected';
+    status: "pending" | "approved" | "rejected";
     responseDate?: string;
   }[];
 }

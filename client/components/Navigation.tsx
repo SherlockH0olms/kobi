@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface NavigationProps {
   companyName?: string;
@@ -11,20 +11,20 @@ export function Navigation({
   companyName,
   currentStep = 1,
   onLogout,
-  pathname = '/'
+  pathname = "/",
 }: NavigationProps) {
   const steps = [
-    { number: 1, label: 'Login', path: '/' },
-    { number: 2, label: 'Credit Score', path: '/credit-score' },
-    { number: 3, label: 'Loan Options', path: '/loans' },
-    { number: 4, label: 'Apply', path: '/apply' },
+    { number: 1, label: "Login", path: "/" },
+    { number: 2, label: "Credit Score", path: "/credit-score" },
+    { number: 3, label: "Loan Options", path: "/loans" },
+    { number: 4, label: "Apply", path: "/apply" },
   ];
 
   const getStepFromPath = (path: string): number => {
-    if (path === '/') return 1;
-    if (path.includes('credit-score')) return 2;
-    if (path.includes('loans')) return 3;
-    if (path.includes('apply')) return 4;
+    if (path === "/") return 1;
+    if (path.includes("credit-score")) return 2;
+    if (path.includes("loans")) return 3;
+    if (path.includes("apply")) return 4;
     return 1;
   };
 
@@ -38,7 +38,9 @@ export function Navigation({
           <div className="flex-shrink-0 flex items-center">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg font-heading">K</span>
+                <span className="text-white font-bold text-lg font-heading">
+                  K
+                </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-sm font-heading font-bold text-foreground leading-none">
@@ -58,10 +60,10 @@ export function Navigation({
                 {/* Step circle */}
                 <div
                   className={cn(
-                    'w-8 h-8 rounded-full flex items-center justify-center text-xs font-heading font-bold transition-all',
+                    "w-8 h-8 rounded-full flex items-center justify-center text-xs font-heading font-bold transition-all",
                     activeStep >= step.number
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground'
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground",
                   )}
                 >
                   {step.number}
@@ -71,8 +73,8 @@ export function Navigation({
                 {idx < steps.length - 1 && (
                   <div
                     className={cn(
-                      'flex-1 h-1 mx-1 rounded-full transition-all',
-                      activeStep > step.number ? 'bg-primary' : 'bg-muted'
+                      "flex-1 h-1 mx-1 rounded-full transition-all",
+                      activeStep > step.number ? "bg-primary" : "bg-muted",
                     )}
                   />
                 )}
@@ -95,8 +97,8 @@ export function Navigation({
               <button
                 onClick={onLogout}
                 className={cn(
-                  'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
-                  'text-secondary hover:bg-secondary/10'
+                  "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                  "text-secondary hover:bg-secondary/10",
                 )}
               >
                 Logout
@@ -112,10 +114,10 @@ export function Navigation({
               <div key={step.number} className="flex items-center flex-1">
                 <div
                   className={cn(
-                    'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all',
+                    "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all",
                     activeStep >= step.number
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground'
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground",
                   )}
                 >
                   {step.number}
@@ -123,8 +125,8 @@ export function Navigation({
                 {idx < steps.length - 1 && (
                   <div
                     className={cn(
-                      'flex-1 h-0.5 mx-0.5 rounded-full transition-all',
-                      activeStep > step.number ? 'bg-primary' : 'bg-muted'
+                      "flex-1 h-0.5 mx-0.5 rounded-full transition-all",
+                      activeStep > step.number ? "bg-primary" : "bg-muted",
                     )}
                   />
                 )}

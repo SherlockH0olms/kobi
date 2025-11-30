@@ -73,8 +73,8 @@ export default {
         lg: "var(--shadow-lg)",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Manrope', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
+        heading: ["Manrope", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

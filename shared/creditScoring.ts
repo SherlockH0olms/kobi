@@ -1,4 +1,4 @@
-import { CompanyData, CreditScoreBreakdown, CreditScoreResult } from './api';
+import { CompanyData, CreditScoreBreakdown, CreditScoreResult } from "./api";
 
 const CRITERIA_WEIGHTS = {
   companyAge: 15,
@@ -11,10 +11,15 @@ const CRITERIA_WEIGHTS = {
   growthTrend: 5,
 } as const;
 
-export function calculateCreditScore(companyData: CompanyData): CreditScoreResult {
+export function calculateCreditScore(
+  companyData: CompanyData,
+): CreditScoreResult {
   const breakdown = calculateBreakdown(companyData);
 
-  const totalPoints = Object.values(breakdown).reduce((sum, criterion) => sum + criterion.points, 0);
+  const totalPoints = Object.values(breakdown).reduce(
+    (sum, criterion) => sum + criterion.points,
+    0,
+  );
   const score = Math.min(Math.round(totalPoints), 100);
 
   const grade = getGrade(score);
@@ -33,7 +38,7 @@ export function calculateCreditScore(companyData: CompanyData): CreditScoreResul
 
 function calculateBreakdown(companyData: CompanyData): CreditScoreBreakdown {
   const currentYear = new Date().getFullYear();
-  const foundingYear = parseInt(companyData.foundingDate.split('-')[0]);
+  const foundingYear = parseInt(companyData.foundingDate.split("-")[0]);
   const companyAge = currentYear - foundingYear;
 
   return {
@@ -68,14 +73,17 @@ function calculateBreakdown(companyData: CompanyData): CreditScoreBreakdown {
       label: `Industry Risk: ${companyData.industry}`,
     },
     debtRatio: {
-      points: calculateDebtRatioPoints(companyData.totalDebt, companyData.annualRevenue),
+      points: calculateDebtRatioPoints(
+        companyData.totalDebt,
+        companyData.annualRevenue,
+      ),
       maxPoints: CRITERIA_WEIGHTS.debtRatio,
       label: `Debt Ratio: ${formatDebtRatio(companyData.totalDebt, companyData.annualRevenue)}`,
     },
     growthTrend: {
       points: calculateGrowthTrendPoints(companyData.growthRate),
       maxPoints: CRITERIA_WEIGHTS.growthTrend,
-      label: `Growth Trend: ${companyData.growthRate > 0 ? '+' : ''}${companyData.growthRate}% YoY`,
+      label: `Growth Trend: ${companyData.growthRate > 0 ? "+" : ""}${companyData.growthRate}% YoY`,
     },
   };
 }
@@ -122,19 +130,45 @@ function calculatePaymentHistoryPoints(paymentHistory: number): number {
 }
 
 function calculateIndustryRiskPoints(industry: string): number {
-  const lowRiskIndustries = ['Technology', 'Services', 'Trade', 'Software', 'Consulting', 'Education'];
-  const mediumRiskIndustries = ['Manufacturing', 'Agriculture', 'Logistics', 'Retail'];
-  const highRiskIndustries = ['Real Estate', 'Finance', 'Investment'];
+  const lowRiskIndustries = [
+    "Technology",
+    "Services",
+    "Trade",
+    "Software",
+    "Consulting",
+    "Education",
+  ];
+  const mediumRiskIndustries = [
+    "Manufacturing",
+    "Agriculture",
+    "Logistics",
+    "Retail",
+  ];
+  const highRiskIndustries = ["Real Estate", "Finance", "Investment"];
 
   const industryLower = industry.toLowerCase();
 
-  if (lowRiskIndustries.some(ind => industryLower.includes(ind.toLowerCase()))) return 10;
-  if (mediumRiskIndustries.some(ind => industryLower.includes(ind.toLowerCase()))) return 7;
-  if (highRiskIndustries.some(ind => industryLower.includes(ind.toLowerCase()))) return 4;
+  if (
+    lowRiskIndustries.some((ind) => industryLower.includes(ind.toLowerCase()))
+  )
+    return 10;
+  if (
+    mediumRiskIndustries.some((ind) =>
+      industryLower.includes(ind.toLowerCase()),
+    )
+  )
+    return 7;
+  if (
+    highRiskIndustries.some((ind) => industryLower.includes(ind.toLowerCase()))
+  )
+    return 4;
   return 5;
 }
 
-function calculateDebtRatioPoints(totalDebt: number, annualRevenue: number): number {
+function calculateDebtRatioPoints(
+  totalDebt: number,
+  annualRevenue: number,
+): number {
   if (annualRevenue <= 0) return 0;
 
   const debtRatio = totalDebt / annualRevenue;
@@ -151,31 +185,35 @@ function calculateGrowthTrendPoints(growthRate: number): number {
   return 5;
 }
 
-function getGrade(score: number): 'A' | 'B' | 'C' | 'D' {
-  if (score >= 85) return 'A';
-  if (score >= 70) return 'B';
-  if (score >= 55) return 'C';
-  return 'D';
+function getGrade(score: number): "A" | "B" | "C" | "D" {
+  if (score >= 85) return "A";
+  if (score >= 70) return "B";
+  if (score >= 55) return "C";
+  return "D";
 }
 
 function getEligibilityMessage(score: number): string {
-  if (score >= 85) return 'Excellent credit profile. You qualify for premium loans with competitive rates.';
-  if (score >= 70) return 'Good credit profile. You qualify for standard loans from most lenders.';
-  if (score >= 55) return 'Fair credit profile. Limited loan options available. Consider improving payment history.';
-  if (score >= 40) return 'Low credit profile. Limited options available. Focus on improving financial metrics.';
-  return 'Below minimum threshold. Cannot apply for loans at this time.';
+  if (score >= 85)
+    return "Excellent credit profile. You qualify for premium loans with competitive rates.";
+  if (score >= 70)
+    return "Good credit profile. You qualify for standard loans from most lenders.";
+  if (score >= 55)
+    return "Fair credit profile. Limited loan options available. Consider improving payment history.";
+  if (score >= 40)
+    return "Low credit profile. Limited options available. Focus on improving financial metrics.";
+  return "Below minimum threshold. Cannot apply for loans at this time.";
 }
 
 function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'AZN',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "AZN",
     minimumFractionDigits: 0,
   }).format(amount);
 }
 
 function formatDebtRatio(debt: number, revenue: number): string {
-  if (revenue <= 0) return 'N/A';
-  const ratio = (debt / revenue * 100).toFixed(1);
+  if (revenue <= 0) return "N/A";
+  const ratio = ((debt / revenue) * 100).toFixed(1);
   return `${ratio}%`;
 }

@@ -1,6 +1,6 @@
-import { RequestHandler } from 'express';
-import { CalculateCreditScoreRequest, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@shared/creditScoring';
+import { RequestHandler } from "express";
+import { CalculateCreditScoreRequest, CreditScoreResult } from "@shared/api";
+import { calculateCreditScore } from "@shared/creditScoring";
 
 // Calculate credit score based on company data
 export const handleCalculateCreditScore: RequestHandler = (req, res) => {
@@ -8,7 +8,7 @@ export const handleCalculateCreditScore: RequestHandler = (req, res) => {
 
   if (!companyData) {
     res.status(400).json({
-      error: 'Company data is required',
+      error: "Company data is required",
     });
     return;
   }
@@ -20,8 +20,8 @@ export const handleCalculateCreditScore: RequestHandler = (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(500).json({
-      error: 'Failed to calculate credit score',
-      details: error instanceof Error ? error.message : 'Unknown error',
+      error: "Failed to calculate credit score",
+      details: error instanceof Error ? error.message : "Unknown error",
     });
   }
 };

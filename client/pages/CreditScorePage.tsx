@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
-import { Button } from '@/components/ui/button';
-import { CreditScoreCard } from '@/components/CreditScoreCard';
-import { CriteriaBreakdown } from '@/components/CriteriaBreakdown';
-import { CompanyData, CreditScoreResult } from '@shared/api';
-import { calculateCreditScore } from '@shared/creditScoring';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { CreditScoreCard } from "@/components/CreditScoreCard";
+import { CriteriaBreakdown } from "@/components/CriteriaBreakdown";
+import { CompanyData, CreditScoreResult } from "@shared/api";
+import { calculateCreditScore } from "@shared/creditScoring";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function CreditScorePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
-  const [creditScore, setCreditScore] = useState<CreditScoreResult | null>(null);
+  const [creditScore, setCreditScore] = useState<CreditScoreResult | null>(
+    null,
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,34 +27,36 @@ export default function CreditScorePage() {
       setIsLoading(false);
     } else {
       // Redirect if no company data
-      navigate('/');
+      navigate("/");
     }
   }, [location, navigate]);
 
   const handleContinueToLoans = () => {
     if (creditScore) {
-      navigate('/loans', {
+      navigate("/loans", {
         state: { companyData, creditScore },
       });
     }
   };
 
   const handleBackToCompanyData = () => {
-    navigate('/company-data', { state: { companyData } });
+    navigate("/company-data", { state: { companyData } });
   };
 
   if (isLoading || !creditScore) {
     return (
-      <Layout companyData={companyData} onLogout={() => navigate('/')}>
+      <Layout companyData={companyData} onLogout={() => navigate("/")}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-muted-foreground">Calculating your credit score...</p>
+          <p className="text-muted-foreground">
+            Calculating your credit score...
+          </p>
         </div>
       </Layout>
     );
   }
 
   return (
-    <Layout companyData={companyData} onLogout={() => navigate('/')}>
+    <Layout companyData={companyData} onLogout={() => navigate("/")}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-8">
           <button
@@ -66,7 +70,9 @@ export default function CreditScorePage() {
             Your Credit Score
           </h1>
           <p className="text-muted-foreground max-w-2xl">
-            Your personalized credit assessment based on 8 key financial criteria. This score helps lenders understand your creditworthiness fairly and transparently.
+            Your personalized credit assessment based on 8 key financial
+            criteria. This score helps lenders understand your creditworthiness
+            fairly and transparently.
           </p>
         </div>
 
@@ -84,34 +90,48 @@ export default function CreditScorePage() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-foreground mb-2">Your Score: {creditScore.score}</h3>
+                  <h3 className="font-semibold text-foreground mb-2">
+                    Your Score: {creditScore.score}
+                  </h3>
                   <p className="text-sm text-muted-foreground">
-                    Your credit score ranges from 0-100 and is calculated using advanced AI algorithms
-                    that analyze 8 different financial criteria relevant to business lending.
+                    Your credit score ranges from 0-100 and is calculated using
+                    advanced AI algorithms that analyze 8 different financial
+                    criteria relevant to business lending.
                   </p>
                 </div>
 
                 <div className="border-t border-border pt-4">
-                  <h3 className="font-semibold text-foreground mb-2">Your Grade: {creditScore.grade}</h3>
+                  <h3 className="font-semibold text-foreground mb-2">
+                    Your Grade: {creditScore.grade}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Your grade provides a quick assessment of your overall creditworthiness.
+                    Your grade provides a quick assessment of your overall
+                    creditworthiness.
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex gap-2">
                       <span className="font-semibold text-success">A:</span>
-                      <span>85+ - Excellent profile, best loan rates available</span>
+                      <span>
+                        85+ - Excellent profile, best loan rates available
+                      </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-primary">B:</span>
-                      <span>70-84 - Good profile, standard rates from most lenders</span>
+                      <span>
+                        70-84 - Good profile, standard rates from most lenders
+                      </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-warning">C:</span>
-                      <span>55-69 - Fair profile, limited options available</span>
+                      <span>
+                        55-69 - Fair profile, limited options available
+                      </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-semibold text-destructive">D:</span>
-                      <span>&lt;55 - Limited profile, fewer lenders available</span>
+                      <span>
+                        &lt;55 - Limited profile, fewer lenders available
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -128,7 +148,11 @@ export default function CreditScorePage() {
                     ✓ Yes, you're eligible to apply!
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    We found {creditScore.loanEligibility.canApply ? '12+ lenders' : 'no lenders'} willing to work with your credit profile.
+                    We found{" "}
+                    {creditScore.loanEligibility.canApply
+                      ? "12+ lenders"
+                      : "no lenders"}{" "}
+                    willing to work with your credit profile.
                   </p>
                 </div>
               ) : (
@@ -137,7 +161,8 @@ export default function CreditScorePage() {
                     Your score is below the minimum required to apply.
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Consider improving your financial metrics and try again later.
+                    Consider improving your financial metrics and try again
+                    later.
                   </p>
                 </div>
               )}
@@ -198,7 +223,8 @@ export default function CreditScorePage() {
         {!creditScore.loanEligibility.canApply && (
           <div className="mt-4 p-4 bg-destructive/5 border border-destructive/20 rounded-lg">
             <p className="text-sm text-destructive">
-              Your credit score is below the minimum required to apply for loans. Please improve your financial metrics and try again later.
+              Your credit score is below the minimum required to apply for
+              loans. Please improve your financial metrics and try again later.
             </p>
           </div>
         )}

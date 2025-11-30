@@ -1,5 +1,5 @@
-import { CreditScoreResult } from '@shared/api';
-import { cn } from '@/lib/utils';
+import { CreditScoreResult } from "@shared/api";
+import { cn } from "@/lib/utils";
 
 interface CreditScoreCardProps {
   score: CreditScoreResult;
@@ -9,16 +9,16 @@ interface CreditScoreCardProps {
 export function CreditScoreCard({ score, className }: CreditScoreCardProps) {
   const getScoreColor = (grade: string) => {
     switch (grade) {
-      case 'A':
-        return { bg: 'from-success to-green-500', text: 'text-success' };
-      case 'B':
-        return { bg: 'from-primary to-blue-500', text: 'text-primary' };
-      case 'C':
-        return { bg: 'from-warning to-amber-500', text: 'text-warning' };
-      case 'D':
-        return { bg: 'from-destructive to-red-500', text: 'text-destructive' };
+      case "A":
+        return { bg: "from-success to-green-500", text: "text-success" };
+      case "B":
+        return { bg: "from-primary to-blue-500", text: "text-primary" };
+      case "C":
+        return { bg: "from-warning to-amber-500", text: "text-warning" };
+      case "D":
+        return { bg: "from-destructive to-red-500", text: "text-destructive" };
       default:
-        return { bg: 'from-muted to-gray-400', text: 'text-muted-foreground' };
+        return { bg: "from-muted to-gray-400", text: "text-muted-foreground" };
     }
   };
 
@@ -27,11 +27,14 @@ export function CreditScoreCard({ score, className }: CreditScoreCardProps) {
   const strokeDashoffset = circumference - (score.score / 100) * circumference;
 
   return (
-    <div className={cn('bg-white rounded-lg shadow-md p-8', className)}>
+    <div className={cn("bg-white rounded-lg shadow-md p-8", className)}>
       <div className="flex flex-col items-center">
         {/* Circular progress */}
         <div className="relative w-56 h-56 flex items-center justify-center mb-6">
-          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
+          <svg
+            className="w-full h-full transform -rotate-90"
+            viewBox="0 0 200 200"
+          >
             {/* Background circle */}
             <circle
               cx="100"
@@ -47,7 +50,7 @@ export function CreditScoreCard({ score, className }: CreditScoreCardProps) {
               cy="100"
               r="90"
               fill="none"
-              stroke={`var(--${getScoreColor(score.grade).text.replace('text-', '')})`}
+              stroke={`var(--${getScoreColor(score.grade).text.replace("text-", "")})`}
               strokeWidth="8"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -58,14 +61,16 @@ export function CreditScoreCard({ score, className }: CreditScoreCardProps) {
 
           {/* Center content */}
           <div className="absolute flex flex-col items-center">
-            <div className={cn('text-5xl font-heading font-bold', colors.text)}>
+            <div className={cn("text-5xl font-heading font-bold", colors.text)}>
               {score.score}
             </div>
-            <div className="text-sm text-muted-foreground font-heading">Credit Score</div>
+            <div className="text-sm text-muted-foreground font-heading">
+              Credit Score
+            </div>
             <div
               className={cn(
-                'mt-2 px-3 py-1 rounded-full text-xs font-bold text-white',
-                colors.bg.replace('from-', 'bg-').split(' ')[0]
+                "mt-2 px-3 py-1 rounded-full text-xs font-bold text-white",
+                colors.bg.replace("from-", "bg-").split(" ")[0],
               )}
             >
               Grade {score.grade}
@@ -111,15 +116,15 @@ export function CreditScoreCard({ score, className }: CreditScoreCardProps) {
 
 function getScoreInterpretation(grade: string): string {
   switch (grade) {
-    case 'A':
-      return 'Excellent Credit Profile';
-    case 'B':
-      return 'Good Credit Profile';
-    case 'C':
-      return 'Fair Credit Profile';
-    case 'D':
-      return 'Limited Credit Profile';
+    case "A":
+      return "Excellent Credit Profile";
+    case "B":
+      return "Good Credit Profile";
+    case "C":
+      return "Fair Credit Profile";
+    case "D":
+      return "Limited Credit Profile";
     default:
-      return 'Credit Profile';
+      return "Credit Profile";
   }
 }
